@@ -8,12 +8,15 @@
   </head>
   <body>
     <%= render partial: 'layouts/elements/nav' %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <div class="container">
+      <%= flash_messages %>      
+    </div>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
   <script type="text/javascript" src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
   <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </html>
