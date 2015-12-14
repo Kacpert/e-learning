@@ -8,7 +8,6 @@ FactoryGirl.define do
     password_confirmation   'password'
   end
 
-  # This will use the User class (Admin would have been guessed)
   factory :admin, class: User do
     email                   'admin@admin.com'
     first_name              'Admin'

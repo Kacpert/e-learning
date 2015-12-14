@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 RSpec.feature "Sessions", type: :feature do
-  it 'should login user by popup' do
+  it 'should login user' do
     user = create(:user)
+    sign_in user
     visit '/'
     click_button 'Sign in'
     fill_in 'Email', :with => user.email
