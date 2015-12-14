@@ -50,8 +50,8 @@ group :development, :test do
   # FactoryGirl
   # Guard
   # Tests
-  gem 'rspec'
+  gem 'rspec-rails', '~> 3.0'
   gem 'capybara'
-  gem 'factory_girl'
-  gem 'guard'
+  gem 'factory_girl_rails'
+  gem 'guard-rails', require: false
 end
