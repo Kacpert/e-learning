@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :user do
     email                   'john@gmail.com'
     first_name              'John'
-    last_name               'Doe'
+    last_name               'Doel'
     admin                   false
     password                'password'
     password_confirmation   'password'
