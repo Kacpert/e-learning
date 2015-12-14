@@ -20,15 +20,5 @@ RSpec.describe User, type: :model do
     expect(user.admin).to eq(false)
   end
 
-  it 'should update user to admin' do
-    user = create(:user)
-    user.update(admin: true)
-    expect(admin.admin).to eq(true)
-  end
 
-  it 'should destroy user' do
-    user = create(:user)
-    user.update(admin: true)
-    expect(admin.admin).to eq(true)
-  end
 end
