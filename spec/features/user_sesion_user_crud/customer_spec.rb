@@ -11,7 +11,7 @@ RSpec.feature "Customers", type: :feature do
     fill_in 'Current password', with: user.password
     first(:button, 'Update').click
     expect(page.has_link?('Sign out')).to eq(true)
-    expect(user.first_name).to eq('Tomas')
-    expect(user.last_name).to eq('Richy')
+    expect(User.first.first_name).to eq('Tomas')
+    expect(User.first.last_name).to eq('Richy')
   end
 end
