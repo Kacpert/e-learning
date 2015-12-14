@@ -8,20 +8,29 @@ RSpec.describe Lesson, type: :model do
         expect(lesson.description).to eq('a b c d sdw' * 250)
       end
     end
-    it 'shouldn`t create invalid lesson' do
+    it 'shouldn`t create without name and description' do
       lesson = create(:lesson, name: '').should_not be_valid
       lesson = create(:lesson, description: '').should_not be_valid
     end
 
 
-  # describe 'update' do
-  #   it 'normal to admin' do
-  #   end
-  # end
+  describe 'update' do
+    it 'name' do
+      lesson = create(:lesson)
+      lesson.update(name: 'new name')
+      expect(lesson.name).to eq('new name')
+    end
 
-  # it 'should be destroy' do
-  #   user = create(:user)
-  #   user.destroy
-  #   expect(User.all.size).to eq(0)
-  # end
+    it 'description' do
+      lesson = create(:lesson)
+      lesson.update(description: 'abc')
+      expect(lesson.description).to eq('abc')
+    end
+  end
+
+  it 'should be destroy' do
+    lesson = create(:lesson)
+    lesson.destroy
+    expect(Lesson.all.size).to eq(0)
+  end
 end
