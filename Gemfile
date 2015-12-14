@@ -36,6 +36,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # User management
 gem 'devise'
 
+# Image management
+gem 'paperclip'
+
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
