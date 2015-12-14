@@ -55,9 +55,9 @@
       </ul> -->
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
-          <button type="button" class="btn btn-default navbar-btn">Sign out</button>
+          <%= button_to 'Sign out', destroy_user_session_path, class: 'btn btn-default navbar-btn', method: :delete %>
         <% else %>
-          <button type="button" class="btn btn-default navbar-btn">Sign in</button>
+          <%= button_to "Sign in", new_user_session_path, class: 'btn btn-default navbar-btn' %>
         <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->
