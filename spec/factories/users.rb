@@ -13,7 +13,7 @@ FactoryGirl.define do
     email                   'admin@admin.com'
     first_name              'Admin'
     last_name               'Doel'
-    admin                   false
+    admin                   true
     password                'password'
     password_confirmation   'password'
   end
