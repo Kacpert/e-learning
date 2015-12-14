@@ -55,9 +55,10 @@
       </ul> -->
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
-          <%= button_to 'Sign out', destroy_user_session_path, class: 'btn btn-default navbar-btn', method: :delete %>
+          <%= link_to 'Edit account', edit_user_registration_path, class: 'btn btn-default navbar-btn' %>
+          <%= link_to 'Sign out', destroy_user_session_path, class: 'btn btn-default navbar-btn', method: :delete %>
         <% else %>
-          <%= button_to "Sign in", new_user_session_path, class: 'btn btn-default navbar-btn' %>
+          <%= link_to "Sign in", new_user_session_path, class: 'btn btn-default navbar-btn' %>
         <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->
