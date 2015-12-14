@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature "Customers", type: :feature do
   it 'should be able to edit they own account' do
     user = create(:user)
-    sign_in user
+    login_as(user, :scope => :user)
     visit '/'
     first(:button, 'Edit account').click 
     fill_in 'First name', with: 'Tomas'

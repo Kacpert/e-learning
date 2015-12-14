@@ -9,8 +9,7 @@ RSpec.describe Lesson, type: :model do
       end
     end
     it 'shouldn`t create without name and description' do
-      lesson = create(:lesson, name: '').should_not be_valid
-      lesson = create(:lesson, description: '').should_not be_valid
+      expect(build(:lesson, name: nil, description: nil)).to_not be_valid
     end
 
 
