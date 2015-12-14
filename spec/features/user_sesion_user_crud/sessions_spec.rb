@@ -7,7 +7,7 @@ RSpec.feature "Sessions", type: :feature do
     click_button 'Sign in'
     fill_in 'Email', :with => user.email
     fill_in 'Password', :with => user.password
-    first(:button, 'Sign in').click
+    find('input[type="submit"][name="commit"][value="Sign in"]').click
     expect(page.has_button?('Sign out')).to eq(true)
   end
 end
