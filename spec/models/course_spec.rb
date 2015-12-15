@@ -16,7 +16,7 @@ RSpec.describe Course, type: :model do
       lesson_2  = create(:lesson, name: 'other')
 
       course.lessons << [lesson_1, lesson_2]
-      except(Course.first.lessons.size).to eq(2)
+      expect(Course.first.lessons.size).to eq(2)
     end
 
     it 'shouldn`t create without name and description' do

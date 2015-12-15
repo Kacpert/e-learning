@@ -20,8 +20,8 @@ RSpec.describe Lesson, type: :model do
     course_1.lessons << lesson
     course_2.lessons << lesson
 
-    except(Course.firs.lessons.first).to eq(lesson)
-    except(Course.second.lessons.first).to eq(lesson)
+    expect(Course.first.lessons.first).to eq(lesson)
+    expect(Course.second.lessons.first).to eq(lesson)
   end
 
 
