@@ -17,8 +17,8 @@ RSpec.describe Lesson, type: :model do
     course_2  = create(:course, name: 'smapl')
     lesson    = create(:lesson)
 
-    course_1 << lesson
-    course_2 << lesson
+    course_1.lessons << lesson
+    course_2.lessons << lesson
 
     except(Course.firs.lessons.first).to eq(lesson)
     except(Course.second.lessons.first).to eq(lesson)
