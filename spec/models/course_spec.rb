@@ -15,7 +15,7 @@ RSpec.describe Course, type: :model do
       lesson_1  = create(:lesson)
       lesson_2  = create(:lesson, name: 'other')
 
-      course << [lesson_1, lesson_2]
+      course.lessons << [lesson_1, lesson_2]
       except(Course.first.lessons.size).to eq(2)
     end
 
