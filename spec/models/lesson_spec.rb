@@ -12,6 +12,18 @@ RSpec.describe Lesson, type: :model do
       expect(build(:lesson, name: nil, description: nil)).to_not be_valid
     end
 
+  it 'should be in two diffrent courses' do
+    course_1  = create(:course)
+    course_2  = create(:course, name: 'smapl')
+    lesson    = create(:lesson)
+
+    course_1 << lesson
+    course_2 << lesson
+
+    except(Course.firs.lessons.first).to eq(lesson)
+    except(Course.second.lessons.first).to eq(lesson)
+  end
+
 
   describe 'update' do
     it 'name' do
