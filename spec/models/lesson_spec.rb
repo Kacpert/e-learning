@@ -11,6 +11,13 @@ RSpec.describe Lesson, type: :model do
     it 'shouldn`t create without name and description' do
       expect(build(:lesson, name: nil, description: nil)).to_not be_valid
     end
+    it 'should have valid type' do
+      expect(build(:lesson, type: 'test')).to         be_valid
+      expect(build(:lesson, type: 'content')).to      be_valid
+      expect(build(:lesson, type: 'cos')).to_not      be_valid
+      expect(build(:lesson, type: 'contents')).to_not be_valid
+    end
+
 
   it 'should be in two diffrent courses' do
     course_1  = create(:course)
