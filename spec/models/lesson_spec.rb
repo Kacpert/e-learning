@@ -8,16 +8,26 @@ RSpec.describe Lesson, type: :model do
         expect(lesson.description).to eq('a b c d sdw' * 250)
       end
     end
+
     it 'shouldn`t create without name and description' do
       expect(build(:lesson, name: nil, description: nil)).to_not be_valid
     end
-    it 'should have valid type' do
-      expect(build(:lesson, type: 'test')).to         be_valid
-      expect(build(:lesson, type: 'content')).to      be_valid
-      expect(build(:lesson, type: 'cos')).to_not      be_valid
-      expect(build(:lesson, type: 'contents')).to_not be_valid
+
+    it 'should have valid type of "test"' do
+      expect(build(:lesson, lesson_type: 'test')).to be_valid
     end
 
+    it 'should have valid type of "content"' do
+      expect(build(:lesson, lesson_type: 'content')).to be_valid
+    end
+
+    it 'should not have valid type of "contents"' do
+      expect(build(:lesson, lesson_type: 'contents')).to_not be_valid
+    end
+
+    it 'should not have valid type of "cos"' do
+      expect(build(:lesson, lesson_type: 'cos')).to_not be_valid
+    end
 
   it 'should be in two diffrent courses' do
     course_1  = create(:course)
