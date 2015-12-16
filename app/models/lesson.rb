@@ -4,6 +4,7 @@ class Lesson < ActiveRecord::Base
 
   validates :name, presence: true
   validates :description, presence: true
+
   has_many :courses, through: :courses_lessons
   has_many :courses_lessons
 end
