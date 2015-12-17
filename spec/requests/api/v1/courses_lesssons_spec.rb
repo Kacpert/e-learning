@@ -1,15 +1,22 @@
 require "rails_helper"
 
 RSpec.describe "Lesson via courses api", :type => :request do
+  before do
+    @course = create(:course, lessons: create_list(:lesson, 7))
+  end
 
-  it 'get lesson from specyfic course' do
-    course = create(:course)
-    lessons = create_list(:lesson, 7)
-    course << lessons
-    get "/api/v1/courses/#{course.id}/lessons"
+  describe "when #show" do
+    it "should respond with success and status 200" do
+      get "/api/v1/courses/#{@course.id}/lessons"
 
-    # test for the 200 status-code
-    expect(response).to be_success
-    expect(json['lessons'].length).to eq(7)
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+    end
+
+    it "should return lesson from specyfic course" do
+      get "/api/v1/courses/#{@course.id}/lessons"
+
+      expect(json['lessons'].length).to eq(7)
+    end
   end
 end
