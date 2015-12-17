@@ -2,6 +2,7 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment",__FILE__)
 require 'rspec/rails'
 require "capybara/rspec"
+require 'support/request_helpers'
 
 RSpec.configure do |config|
   config.include Requests::JsonHelpers, type: :request
