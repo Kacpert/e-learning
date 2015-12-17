@@ -39,6 +39,9 @@ gem 'devise'
 # Image management
 gem 'paperclip'
 
+# Rails Admin
+gem 'rails_admin'
+
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
