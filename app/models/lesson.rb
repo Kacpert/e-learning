@@ -8,4 +8,7 @@ class Lesson < ActiveRecord::Base
 
   has_many :courses, through: :courses_lessons
   has_many :courses_lessons
+
+  has_one :lesson_content
+  has_one :lesson_test
 end
