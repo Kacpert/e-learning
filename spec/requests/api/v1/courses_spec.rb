@@ -12,7 +12,7 @@ RSpec.describe "Courses api", :type => :request do
       expect(response).to be_success
       expect(json['course']['name']).to eq('New course')
       expect(json['course']['description']).to eq('some desc')
-      expect(json['course']['image_url']).to include('http|https')
+      expect(json['course']['image_url']).to match(/http|https/)
     end
   end
 end
