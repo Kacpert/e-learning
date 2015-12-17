@@ -4,6 +4,7 @@ require 'rspec/rails'
 require "capybara/rspec"
 
 RSpec.configure do |config|
+  config.include Requests::JsonHelpers, type: :request
   config.expect_with :rspec do |expectations|
     # This option will default to `true` in RSpec 4. It makes the `description`
     # and `failure_message` of custom matchers include text for helper methods
