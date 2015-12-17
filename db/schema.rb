@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151217105455) do
+ActiveRecord::Schema.define(version: 20151216141048) do
 
   create_table "courses", force: :cascade do |t|
     t.string   "name"
@@ -33,36 +33,6 @@ ActiveRecord::Schema.define(version: 20151217105455) do
 
   add_index "courses_lessons", ["course_id"], name: "index_courses_lessons_on_course_id"
   add_index "courses_lessons", ["lesson_id"], name: "index_courses_lessons_on_lesson_id"
-
-  create_table "lesson_contents", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "lesson_id"
-  end
-
-  add_index "lesson_contents", ["lesson_id"], name: "index_lesson_contents_on_lesson_id"
-
-  create_table "lesson_test_answers", force: :cascade do |t|
-    t.text     "description"
-    t.boolean  "correct"
-    t.integer  "lesson_test_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
-
-  add_index "lesson_test_answers", ["lesson_test_id"], name: "index_lesson_test_answers_on_lesson_test_id"
-
-  create_table "lesson_tests", force: :cascade do |t|
-    t.string   "name"
-    t.text     "question"
-    t.integer  "lesson_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "lesson_tests", ["lesson_id"], name: "index_lesson_tests_on_lesson_id"
 
   create_table "lessons", force: :cascade do |t|
     t.string   "name"
