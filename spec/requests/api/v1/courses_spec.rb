@@ -1,7 +1,7 @@
 
 require "rails_helper"
 
-RSpec.describe "Course api", :type => :request do
+RSpec.describe "Courses api", :type => :request do
 
   describe "Course" do
     it 'sends a specyfic course' do
