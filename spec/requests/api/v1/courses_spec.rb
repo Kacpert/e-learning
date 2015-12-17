@@ -10,6 +10,9 @@ RSpec.describe "Course api", :type => :request do
 
       # test for the 200 status-code
       expect(response).to be_success
+      expect(json['course']['name']).to eq('New course')
+      expect(json['course']['description']).to eq('some desc')
+      expect(json['course']['image_url']).to include('http|https')
     end
   end
 end
