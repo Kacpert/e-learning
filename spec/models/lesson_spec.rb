@@ -1,14 +1,30 @@
 require 'rails_helper'
 
 RSpec.describe Lesson, type: :model do
-    describe 'create' do
-      it 'valid lesson' do
-        lesson = create(:lesson)
-        expect(lesson.name).to eq('lesson name')
-        expect(lesson.description).to eq('a b c d sdw' * 250)
-      end
+  before do
+    @lesson = create(:lesson)
+    @course_1  = create(:course, lessons: [@lesson])
+    @course_2  = create(:course, name: 'sample', lessons: [@lesson])
+  end
+
+  describe "when #new" do
+    it "should have valid name" do
+      expect(@lesson.name).to eq('lesson name')
     end
 
+    it "should have valid description" do
+      expect(@lesson.description).to eq('a b c d sdw' * 250)
+    end
+
+    context 'with courses' do
+      it "should have two courses" do
+        expect(@course_1.lessons.first).to eq(@lesson)
+        expect(@course_2.lessons.first).to eq(@lesson)
+      end
+    end
+  end
+
+  describe "when #new" do
     it 'shouldn`t create without name and description' do
       expect(build(:lesson, name: nil, description: nil)).to_not be_valid
     end
@@ -28,37 +44,24 @@ RSpec.describe Lesson, type: :model do
     it 'should not have valid type of "cos"' do
       expect(build(:lesson, lesson_type: 'cos')).to_not be_valid
     end
-
-  it 'should be in two diffrent courses' do
-    course_1  = create(:course)
-    course_2  = create(:course, name: 'smapl')
-    lesson    = create(:lesson)
-
-    course_1.lessons << lesson
-    course_2.lessons << lesson
-
-    expect(Course.first.lessons.first).to eq(lesson)
-    expect(Course.second.lessons.first).to eq(lesson)
   end
 
-
-  describe 'update' do
-    it 'name' do
-      lesson = create(:lesson)
-      lesson.update(name: 'new name')
-      expect(lesson.name).to eq('new name')
+  describe "when #update" do
+    it "should be updated with new name" do
+      @lesson.update(name: 'new name')
+      expect(@lesson.name).to eq('new name')
     end
 
-    it 'description' do
-      lesson = create(:lesson)
-      lesson.update(description: 'abc')
-      expect(lesson.description).to eq('abc')
+    it "should be updated with new description" do
+      @lesson.update(description: 'abc')
+      expect(@lesson.description).to eq('abc')
     end
   end
 
-  it 'should be destroy' do
-    lesson = create(:lesson)
-    lesson.destroy
-    expect(Lesson.all.size).to eq(0)
+  describe "when #destroy" do
+    it "should be deletable" do
+      @lesson.destroy
+      expect(Lesson.all.size).to eq(0)
+    end
   end
 end
