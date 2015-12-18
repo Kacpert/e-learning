@@ -1,7 +1,7 @@
 FactoryGirl.define do
-  factory :lesson_test_answer do
+  factory :question_answer do
     description          'sample answer'
     correct              true
-    lesson_test
+    question
   end
 end
