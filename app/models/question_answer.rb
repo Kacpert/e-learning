@@ -1,5 +1,5 @@
-class LessonTestAnswer < ActiveRecord::Base
-  belongs_to :lesson_test
+class QuestionAnswer < ActiveRecord::Base
+  belongs_to :question
 
   validates :description, presence: true
   validates :correct, presence: true

@@ -4,7 +4,7 @@ RSpec.describe Test, type: :model do
   before do
     Question.all.destroy_all
     @test = create(:test, questions: create_list(:question, 12))
-    create(:sequence, type: 'test', foreign_key: @test.id)
+    create(:sequence, sequence_type: 'test', foreign_key: @test.id)
   end
 
   describe "when #create" do
@@ -38,7 +38,7 @@ RSpec.describe Test, type: :model do
 
   describe "when #destroy" do
     it "should be deleteable" do
-      @test.destroy
+      Test.all.destroy_all
       expect(Test.all.size).to eq(0)
     end
   end

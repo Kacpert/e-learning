@@ -9,7 +9,7 @@ RSpec.describe Question, type: :model do
   describe "when #create" do
     context 'valid' do
       it "should have valid question" do
-        expect(@question.question).to eq('a b c d sdw' * 10)
+        expect(@question.question).to eq('sample question')
       end
 
       it 'should have connected 4 question answers' do
@@ -17,7 +17,7 @@ RSpec.describe Question, type: :model do
       end
 
       it "should have connection with test" do
-        expect(@question.tests.first.name).to eq('test name')
+        expect(@question.test.name).to eq('test name')
       end
     end
 
@@ -37,7 +37,7 @@ RSpec.describe Question, type: :model do
 
   describe "when #destroy" do
     it "should be deleteable" do
-      @question.destroy
+      Question.all.destroy_all
       expect(Question.all.size).to eq(0)
     end
   end

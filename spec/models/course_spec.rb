@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Course, type: :model do
   before do
     @course = create(:course)
-    @course.lessons << [create(:lesson), create(:lesson, name: 'other')]
+    @course.sequences << [create(:sequence), create(:sequence, order: 2)]
   end
 
   describe "when #new" do
@@ -16,13 +16,13 @@ RSpec.describe Course, type: :model do
     end
 
     it 'should have two lessons' do
-      expect(@course.lessons.size).to eq(2)
+      expect(@course.sequences.size).to eq(2)
     end
   end
 
   describe "when #new" do
     it "should not be created without name and description" do
-      expect(build(:lesson, name: nil, description: nil)).to_not be_valid
+      expect(build(:course, name: nil, description: nil)).to_not be_valid
     end
   end
 end

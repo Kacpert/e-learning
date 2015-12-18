@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Lesson, type: :model do
   before do
     @lesson = create(:lesson)
-    create(:sequence, type: 'lesson', foreign_key: @lesson.id)
+    create(:sequence, sequence_type: 'lesson', foreign_key: @lesson.id)
   end
 
   describe "when #create" do
@@ -17,7 +17,7 @@ RSpec.describe Lesson, type: :model do
       end
 
       it "should have valid content" do
-        expect(@lesson.description).to eq('a b c d sdw' * 250)
+        expect(@lesson.content).to eq('a b c d sdw' * 250)
       end
 
       it "should have valid sequence" do

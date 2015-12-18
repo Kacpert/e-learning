@@ -5,7 +5,7 @@ RSpec.describe Sequence, type: :model do
     @lesson     = create(:lesson)
     @test       = create(:test)
     @course     = create(:course)
-    @sequence   = create(:sequence, course: @course, type: 'lesson', foreign_key: @lesson.id)
+    @sequence   = create(:sequence, course: @course, sequence_type: 'lesson', foreign_key: @lesson.id)
   end
 
   describe "when #new" do
@@ -22,7 +22,7 @@ RSpec.describe Sequence, type: :model do
     end
 
     it 'shouldn`t create without type' do
-      expect(build(:sequence, type: '')).to_not be_valid
+      expect(build(:sequence, sequence_type: '')).to_not be_valid
     end
 
     it 'shouldn`t create without foreign_key' do
@@ -30,19 +30,19 @@ RSpec.describe Sequence, type: :model do
     end
 
     it 'should have valid type of "test"' do
-      expect(build(:sequence, type: 'test')).to be_valid
+      expect(build(:sequence, sequence_type: 'test')).to be_valid
     end
 
     it 'should have valid type of "lesson"' do
-      expect(build(:sequence, type: 'lesson')).to be_valid
+      expect(build(:sequence, sequence_type: 'lesson')).to be_valid
     end
 
     it 'should not have valid type of "contents"' do
-      expect(build(:sequence, type: 'contents')).to_not be_valid
+      expect(build(:sequence, sequence_type: 'contents')).to_not be_valid
     end
 
     it 'should not have valid type of "cos"' do
-      expect(build(:sequence, type: 'cos')).to_not be_valid
+      expect(build(:sequence, sequence_type: 'cos')).to_not be_valid
     end
   end
 
@@ -60,4 +60,3 @@ RSpec.describe Sequence, type: :model do
     end
   end
 end
-

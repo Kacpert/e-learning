@@ -15,8 +15,8 @@ RSpec.describe QuestionAnswer, type: :model do
         expect(@question_answer.correct).to eq(true)
       end
 
-      it "should have valid lesson_test name" do
-        expect(@question_answer.question.name).to eq('sample question')
+      it "should have valid question question" do
+        expect(@question_answer.question.question).to eq('sample question')
       end
     end
 
