@@ -25,4 +25,6 @@ RSpec.describe Course, type: :model do
       expect(build(:course, name: nil, description: nil)).to_not be_valid
     end
   end
+
+  include_examples 'removeable', Course
 end

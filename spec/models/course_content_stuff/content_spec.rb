@@ -42,12 +42,7 @@ RSpec.describe Content, type: :model do
     end
   end
 
-  describe 'when #destroy' do 
-    it 'should remove content' do
-      @content.destroy
-      expect(Content.all.size).to eq(0)
-    end
-  end
+  include_examples 'removeable', Content
 
   describe 'associations' do
     it 'should belongs to course' do

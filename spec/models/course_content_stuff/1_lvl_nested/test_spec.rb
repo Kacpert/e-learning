@@ -17,12 +17,9 @@ require 'rails_helper'
 # end comment.
 
 RSpec.describe Test, type: :model do
-  describe 'associations' do
-    it 'between content many to many' do
-      test = create(:test)
-      test.contents << create(:content, name: 'name')
-      expect(test.contents.first.name).to eq('Content name') 
-      expect(test.contents.second.name).to eq('name') 
-    end
-  end
+  let(:test) { create(:test) }
+  subject { test }
+  include_examples 'many to many with content'
+
+  include_examples 'removeable', Test
 end

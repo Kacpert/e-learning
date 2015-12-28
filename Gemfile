@@ -66,4 +66,5 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'selenium-webdriver'
   gem 'faker', '~> 1.4', '>= 1.4.3'
+  gem 'rspec-its'
 end
