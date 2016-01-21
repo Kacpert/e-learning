@@ -60,6 +60,8 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
+      resources :users, :only => [:show]
+      resources :categories, only: [:show, :index]
       resources :courses, only: [:show, :index] do
         resources :lessons, only: [:index]
       end

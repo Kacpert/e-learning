@@ -11,7 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151218154209) do
+ActiveRecord::Schema.define(version: 20160121091259) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categories_courses", force: :cascade do |t|
+    t.integer  "category_id"
+    t.integer  "course_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "categories_courses", ["category_id"], name: "index_categories_courses_on_category_id"
+  add_index "categories_courses", ["course_id"], name: "index_categories_courses_on_course_id"
 
   create_table "courses", force: :cascade do |t|
     t.string   "name"
@@ -22,7 +38,13 @@ ActiveRecord::Schema.define(version: 20151218154209) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.text     "long_description"
+    t.string   "author"
+    t.integer  "order"
+    t.integer  "user_id"
   end
+
+  add_index "courses", ["user_id"], name: "index_courses_on_user_id"
 
   create_table "lessons", force: :cascade do |t|
     t.string   "name"

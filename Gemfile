@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-
+ruby '2.2.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
 # Use SCSS for stylesheets
@@ -14,6 +14,7 @@ gem 'coffee-rails', '~> 4.1.0'
 
 # Use PG in production
 gem 'pg', group: :production
+gem 'rails_12factor', group: :production
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -67,4 +68,8 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'faker', '~> 1.4', '>= 1.4.3'
   gem 'rspec-its'
+end
+
+group :test do
+  gem 'shoulda-matchers', '~> 3.0'
 end
