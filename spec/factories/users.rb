@@ -4,8 +4,8 @@ FactoryGirl.define do
     first_name              'John'
     last_name               'Doel'
     admin                   false
-    password                'password'
-    password_confirmation   'password'
+    password                '12345678'
+    password_confirmation   '12345678'
   end
 
   factory :admin, class: User do

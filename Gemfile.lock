@@ -308,7 +308,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   selenium-webdriver
-  shoulda-matchers (~> 3.0)
+  shoulda-matchers
   spring
   sqlite3
   turbolinks
