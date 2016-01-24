@@ -18,6 +18,13 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 Dir["./spec/support/**/*.rb"].sort.each { |f| require f}
 RSpec.configure do |config|
+
+  config.include Requests::JsonHelpers, :type => :controller
+  config.include Requests::HeadersHelpers, :type => :controller
+
+  config.before(:each, type: :controller) do
+    include_default_accept_headers
+  end
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
