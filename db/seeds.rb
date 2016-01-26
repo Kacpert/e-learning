@@ -8,4 +8,15 @@
 
 
 
-User.create(first_name: 'Admin', last_name: 'Admin', admin: true, email: 'admin@admin.com', password: 'password')
+#User.create(first_name: 'Admin', last_name: 'Admin', admin: true, email: 'admin@admin.com', password: 'password')
+
+
+20.times do 
+
+  Course.create(name: Faker::Company.catch_phrase,
+    description: Faker::Lorem.sentence,
+    order: rand(50),
+    author: Faker::Name.name,
+    long_description: Faker::Lorem.paragraphs,
+    )
+end
