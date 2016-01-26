@@ -66,12 +66,12 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'guard-rspec'
   gem 'selenium-webdriver'
-  gem 'faker', '~> 1.4', '>= 1.4.3'
   gem 'rspec-its'
 end
 
 group :test do
   gem "shoulda-matchers"
 end
+  gem 'faker', '~> 1.4', '>= 1.4.3'
 
 gem 'pry'
