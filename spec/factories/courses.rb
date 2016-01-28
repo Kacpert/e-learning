@@ -1,6 +1,5 @@
 FactoryGirl.define do
   factory :course do
-    user
     name                  'New course'
     description           'some desc'
     long_description      'long description'

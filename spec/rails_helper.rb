@@ -42,6 +42,8 @@ ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
 
+  config.include FactoryGirl::Syntax::Methods
+
   config.include Requests::JsonHelpers, :type => :controller
   config.include Requests::HeadersHelpers, :type => :controller
   config.include Devise::TestHelpers, :type => :controller
