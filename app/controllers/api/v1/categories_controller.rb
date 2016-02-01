@@ -6,4 +6,6 @@ class Api::V1::CategoriesController < ActionController::Base
   def index
     @caegorys = caegory.all
   end
+
+  
 end
