@@ -75,3 +75,5 @@ end
   gem 'faker', '~> 1.4', '>= 1.4.3'
 
 gem 'pry'
+
+gem 'database_cleaner'

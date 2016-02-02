@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe Section, type: :model do
   before do
     @section = create(:section)

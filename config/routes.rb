@@ -66,9 +66,8 @@ Rails.application.routes.draw do
       resources :users, only: [:show, :create, :update, :destroy]
       resources :categories, only: [:show, :index]
       resources :sections, only: [:show, :index, :create, :update, :destroy]
-      resources :courses, only: [:show, :index, :create, :update, :destroy] do
-        resources :lessons, only: [:index]
-      end
+      resources :lessons, only: [:show, :index, :create, :update, :destroy]
+      resources :courses, only: [:show, :index, :create, :update, :destroy]
     end
   end
 end
