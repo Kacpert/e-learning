@@ -63,10 +63,15 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
       resources :sessions, :only => [:create, :destroy]
-      resources :users, only: [:show, :create, :update, :destroy]
+      resources :users, only: [:show, :create, :update, :destroy] do
+        resources :groups, only: [:index]
+      end
+      resources :groups, only: [:show, :create, :update, :destroy ]
+      resources :messages, only: [:index ,:show, :create, :update, :destroy ]
       resources :categories, only: [:show, :index]
       resources :sections, only: [:show, :index, :create, :update, :destroy]
       resources :lessons, only: [:show, :index, :create, :update, :destroy]
+      resources :quizzes, only: [:show, :index, :create, :update, :destroy]
       resources :courses, only: [:show, :index, :create, :update, :destroy]
     end
   end

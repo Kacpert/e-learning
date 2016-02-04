@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :groups_users
+  has_many :groups, through: :groups_users
   before_create :generate_authentication_token!
   validates :auth_token, uniqueness: true
   # Include default devise modules. Others available are:
