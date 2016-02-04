@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160204102521) do
+ActiveRecord::Schema.define(version: 20160204153659) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(version: 20160204102521) do
   create_table "courses", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20160204102521) do
     t.string   "author"
     t.integer  "order"
     t.integer  "user_id"
+    t.boolean  "temporal",           default: false
   end
 
   add_index "courses", ["user_id"], name: "index_courses_on_user_id"

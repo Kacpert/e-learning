@@ -29,9 +29,9 @@ RSpec.describe Api::V1::CoursesController, type: :controller do
       context 'valid data' do
         it 'should create course end return localitation in header' do
           attributes = attributes_for(:course)
-          post :create, { course: attributes }, format: :json  
+          post :create, attributes, format: :json  
           should respond_with 201
-          [:image, :name, :description, :long_description, :author, :user, :categories, :order].each do |attr|
+          [:image, :name, :description, :long_description, :author, :user, :categories, :order, :temporal].each do |attr|
             expect(json_response[attr]).to eq(attributes[attr])
           end
         end
@@ -39,7 +39,7 @@ RSpec.describe Api::V1::CoursesController, type: :controller do
       context 'invalid data' do
         it 'should create course end return localitation in header' do
           attributes = attributes_for(:course, name: '')
-          post :create, { course: attributes }, format: :json  
+          post :create, attributes, format: :json  
           should respond_with 422
           expect(json_response[:errors][:name]).to include "can't be blank"
         end
@@ -59,7 +59,7 @@ RSpec.describe Api::V1::CoursesController, type: :controller do
 
         #should have values
         it { expect(response).to be_success }
-        ['name', 'description', 'long_description', 'author', 'order', 'id'].each do |param|
+        ['name', 'description', 'long_description', 'author', 'order', 'id', 'temporal'].each do |param|
           it ("#{param} eq @course.#{param}"){ expect(json[param]).to eq(@course[param]) }
         end
         it { expect(json).to have_key('image_url') } 
@@ -83,7 +83,7 @@ RSpec.describe Api::V1::CoursesController, type: :controller do
       context 'valid data' do
         it 'should update course' do
           attributes = { name: 'name', description: 'description', long_description: 'long_description', author: 'author', order: 14 }
-          put :update, {id: @course.id, course: attributes }, format: :json
+          put :update, {id: @course.id, attributes }, format: :json
           @course.reload
           should respond_with 200
           attributes.each do |param|

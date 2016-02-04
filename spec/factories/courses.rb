@@ -5,6 +5,7 @@ FactoryGirl.define do
     long_description      'long description'
     author                'autor'
     order                  1
+    temporal               true
     image_file_name       { 'lesson_image.jpg' }
     image_content_type    { 'image/png' }
     image_file_size       { 1024 }

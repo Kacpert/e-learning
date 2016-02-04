@@ -40,6 +40,6 @@ class Api::V1::CoursesController < ActionController::Base
   end
 
   def course_params
-    params.require(:course).permit(:name, :description, :long_description, :author, :order, :image)
+    params.permit(:name, :description, :long_description, :author, :order, :image, :temporal)
   end
 end

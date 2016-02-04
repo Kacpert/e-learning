@@ -12,7 +12,7 @@ describe Api::V1::SessionsController do
 
       before(:each) do
         credentials = { email: @user.email, password: "12345678" }
-        post :create, { session: credentials }
+        post :create, credentials
       end
 
       it "returns the user record corresponding to the given credentials" do
@@ -27,7 +27,7 @@ describe Api::V1::SessionsController do
 
       before(:each) do
         credentials = { email: @user.email, password: "invalidpassword" }
-        post :create, { session: credentials }
+        post :create, credentials 
       end
 
       it "returns a json with an error" do
