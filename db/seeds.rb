@@ -22,10 +22,10 @@
 # end
 
 user = User.first
-# 3.times do
-#   group = Group.create(name: Faker::Company.catch_phrase)
-#   user.groups << group
-# end
+3.times do
+  group = Group.create(name: Faker::Company.catch_phrase)
+  user.groups << group
+end
 
 5.times do
   Message.create(user: user, text: Faker::Lorem.paragraphs)
