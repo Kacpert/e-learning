@@ -67,6 +67,9 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'selenium-webdriver'
   gem 'rspec-its'
+
+  # For cross-origin ajax requests
+  gem 'rack-cors', :require => 'rack/cors'
 end
 
 group :test do

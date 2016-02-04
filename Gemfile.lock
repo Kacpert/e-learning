@@ -152,6 +152,7 @@ GEM
       method_source (~> 0.8.1)
       slop (~> 3.4)
     rack (1.6.4)
+    rack-cors (0.4.0)
     rack-pjax (0.8.0)
       nokogiri (~> 1.5)
       rack (~> 1.1)
@@ -300,6 +301,7 @@ DEPENDENCIES
   paperclip
   pg
   pry
+  rack-cors
   rails (= 4.2.1)
   rails_12factor
   rails_admin
@@ -316,4 +318,4 @@ DEPENDENCIES
   web-console
 
 BUNDLED WITH
-   1.10.6
+   1.11.2
