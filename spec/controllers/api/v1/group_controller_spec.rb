@@ -10,7 +10,7 @@ RSpec.describe Api::V1::GroupsController, type: :controller do
       get :create, {name: 'my_group', course_id: course.id, user_ids: user_ids}
       group = Group.first
       expect(json['name']).to eq('my_group')
-      expect(json['users_ids']).to eq(user_ids)
+      expect(json['user_ids']).to eq(user_ids)
       expect(json['course_id']).to eq(course.id)
       expect(group.users.size).to eq(4)
       expect(group.course).to eq(course)
