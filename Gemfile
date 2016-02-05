@@ -46,6 +46,9 @@ gem 'rails_admin'
 # Access an IRB console on exception pages or by using <%= console %> in views
 gem 'web-console', group: :development
 
+# For cross-origin ajax requests
+gem 'rack-cors', :require => 'rack/cors'
+
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
@@ -67,9 +70,6 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'selenium-webdriver'
   gem 'rspec-its'
-
-  # For cross-origin ajax requests
-  gem 'rack-cors', :require => 'rack/cors'
 end
 
 group :test do
