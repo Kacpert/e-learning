@@ -1,5 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Message, type: :model do
-  #pending "add some examples to (or delete) #{__FILE__}"
+  context 'parametrs' do
+    it { should respond_to(:text)           }
+    it { should respond_to(:user)           }
+    it { should respond_to(:users)          }
+    it { should respond_to(:messages_users) }
+    it { should respond_to(:group)          }
+  end
 end

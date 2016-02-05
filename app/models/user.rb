@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :messages, through: :messages_users
+  has_many :messages_users
   has_many :groups_users
   has_many :groups, through: :groups_users
   before_create :generate_authentication_token!

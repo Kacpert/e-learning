@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Group, type: :model do
-  #pending "add some examples to (or delete) #{__FILE__}"
+  it { should respond_to(:users) }
+  it { should respond_to(:groups_users) }
+  it { should respond_to(:course) }
 end

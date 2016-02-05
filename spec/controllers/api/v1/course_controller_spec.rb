@@ -80,22 +80,24 @@ RSpec.describe Api::V1::CoursesController, type: :controller do
     end
 
     describe 'PUT #update' do
-      context 'valid data' do
-        it 'should update course' do
-          attributes = { name: 'name', description: 'description', long_description: 'long_description', author: 'author', order: 14 }
-          put :update, {id: @course.id, attributes }, format: :json
+      context 'valid data' do 
+        before do
+          @attributes = {id: @course.id, name: 'name', description: 'description', long_description: 'long_description', author: 'author', order: 14 }
+          put :update, @attributes, format: :json
           @course.reload
-          should respond_with 200
-          attributes.each do |param|
-             expect(json_response[param.first]).to eq(@course[param.first]) 
+        end       
+        it { should respond_with 200 }
+        { name: 'name', description: 'description', long_description: 'long_description', author: 'author', order: 14 }.each do |param|
+          it("after update json[#{param.first}] should be eq #{param.second}") do
+            expect(json_response[param.first]).to eq(param.second) 
           end
         end
+      end
         it 'should return error when course id is bad' do
           put :update, id: 'a1a', format: :json
           should respond_with 412
           expect(json_response[:errors]).to eq('can`t find course with id: a1a')
         end
-      end
     end
 
     describe 'DELETE #destroy' do

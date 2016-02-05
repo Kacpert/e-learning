@@ -66,14 +66,13 @@ Rails.application.routes.draw do
       resources :users, only: [:show, :create]
       put 'user' => 'users#update'
       delete 'user' => 'users#destroy' 
-      resources :groups, only: [:index]
-      resources :groups, only: [:show, :create, :update, :destroy ]
       resources :messages, only: [:index ,:show, :create, :update, :destroy ]
       resources :categories, only: [:show, :index]
       resources :sections, only: [:show, :index, :create, :update, :destroy]
       resources :lessons, only: [:show, :index, :create, :update, :destroy]
       resources :quizzes, only: [:show, :index, :create, :update, :destroy]
-      resources :courses, only: [:show, :index, :create, :update, :destroy]
+        resources :groups
+      resources :courses, only: [:show, :index, :create, :update, :destroy] 
     end
   end
 end

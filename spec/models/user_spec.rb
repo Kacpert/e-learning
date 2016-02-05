@@ -5,9 +5,13 @@ describe User do
 
   subject { @user }
 
-  it { should respond_to(:email) }
-  it { should respond_to(:password) }
+  it { should respond_to(:email)                 }
+  it { should respond_to(:password)              }
   it { should respond_to(:password_confirmation) }
+  it { should respond_to(:groups)                }
+  it { should respond_to(:groups_users)          }
+  it { should respond_to(:messages)              }
+  it { should respond_to(:messages_users)        }
 
   it { should be_valid }
 

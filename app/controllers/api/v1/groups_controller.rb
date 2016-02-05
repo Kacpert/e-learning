@@ -1,4 +1,4 @@
-class Api::V1::GroupsController < ActionController::Base
+class Api::V1::GroupsController < ApplicationController
   before_action :find_group, only: [:show, :update, :destroy]
   before_action :find_user, only: [:index]
   def show
@@ -49,6 +49,6 @@ class Api::V1::GroupsController < ActionController::Base
   end
 
   def group_params
-    params.require(:group).permit(:name)
+    params.permit(:name, :course_id, :user_ids => [])
   end
 end
