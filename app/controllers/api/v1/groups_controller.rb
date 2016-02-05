@@ -9,11 +9,11 @@ class Api::V1::GroupsController < ApplicationController
   end
 
   def create
-    group = Group.new(group_params)
-    if group.save
-      render json: group, status: 201, location: api_v1_group_url(group)
+    @group = Group.new(group_params)
+    if @group.save
+      render status: 201, location: api_v1_group_url(@group)
     else
-    render json: { errors: group.errors }, status: 422
+    render json: { errors: @group.errors }, status: 422
     end
   end
 

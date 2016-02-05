@@ -6,11 +6,15 @@ RSpec.describe Api::V1::GroupsController, type: :controller do
     it 'should create group with users asign to course' do
       course = create(:course)
       users = create_list(:user, 4)
-      get :create, {name: 'my_group', course_id: course.id, user_ids: users.map(&:id)}
+      user_ids = users.map(&:id)
+      get :create, {name: 'my_group', course_id: course.id, user_ids: user_ids}
       group = Group.first
-      expect(group.name).to eq('my_group')
+      expect(json['name']).to eq('my_group')
+      expect(json['users_ids']).to eq(user_ids)
+      expect(json['course_id']).to eq(course.id)
       expect(group.users.size).to eq(4)
       expect(group.course).to eq(course)
+      should respond_with 201
     end
   end
 
