@@ -4,7 +4,7 @@ class Api::V1::MessagesController < ActionController::Base
   end
 
   def index
-    @messages = Message.all
+    @messages = current_user.messages_users.where(displayed: false).map(&:message)
   end
 
   def create
@@ -17,6 +17,13 @@ class Api::V1::MessagesController < ActionController::Base
   end
 
   def update
+    if params.has_key?(:displayed)
+      m = @message.messages_users.where(user_id: current_user.id).first
+      m.displayed = true
+      m.save
+    end
+
+
     if @message.update(message_params)
       render json: @message, status: 200, location: api_v1_message_url(@message)
     else
@@ -40,6 +47,6 @@ class Api::V1::MessagesController < ActionController::Base
   end
 
   def message_params
-    params.require(:message).permit(:name, :description, :video_url, :subtitles_url, :image)
+    params.permit(:text, :user_ids => [])
   end
 end
