@@ -1,5 +1,5 @@
 class Api::V1::SessionsController < ApplicationController
-
+  before_action :authenticate_with_token!, only: [:destroy]
   def create
     user_password = params[:password]
     user_email = params[:email]
@@ -7,7 +7,7 @@ class Api::V1::SessionsController < ApplicationController
 
     if user.valid_password? user_password
       sign_in user, store: false
-      render json: user, status: 200, location: api_v1_users_url(user)
+      render json: user.to_json(only:[:id, :auth_token]), status: 200, location: api_v1_users_url(user)
     else
       render json: { errors: "Invalid email or password" }, status: 422
     end
@@ -21,3 +21,4 @@ class Api::V1::SessionsController < ApplicationController
     render json: {success: 'successfully logged out'}, status: 204
   end
 end
+

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160205131441) do
+ActiveRecord::Schema.define(version: 20160208140715) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -28,6 +28,31 @@ ActiveRecord::Schema.define(version: 20160205131441) do
 
   add_index "categories_courses", ["category_id"], name: "index_categories_courses_on_category_id"
   add_index "categories_courses", ["course_id"], name: "index_categories_courses_on_course_id"
+
+  create_table "conversations", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "conversations_messages", force: :cascade do |t|
+    t.integer  "conversation_id"
+    t.integer  "message_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "conversations_messages", ["conversation_id"], name: "index_conversations_messages_on_conversation_id"
+  add_index "conversations_messages", ["message_id"], name: "index_conversations_messages_on_message_id"
+
+  create_table "conversations_users", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "conversation_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "conversations_users", ["conversation_id"], name: "index_conversations_users_on_conversation_id"
+  add_index "conversations_users", ["user_id"], name: "index_conversations_users_on_user_id"
 
   create_table "courses", force: :cascade do |t|
     t.string   "name"
@@ -90,17 +115,6 @@ ActiveRecord::Schema.define(version: 20160205131441) do
 
   add_index "messages", ["group_id"], name: "index_messages_on_group_id"
   add_index "messages", ["user_id"], name: "index_messages_on_user_id"
-
-  create_table "messages_users", force: :cascade do |t|
-    t.integer  "message_id"
-    t.integer  "user_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.boolean  "displayed",  default: false
-  end
-
-  add_index "messages_users", ["message_id"], name: "index_messages_users_on_message_id"
-  add_index "messages_users", ["user_id"], name: "index_messages_users_on_user_id"
 
   create_table "question_answers", force: :cascade do |t|
     t.string   "description"
