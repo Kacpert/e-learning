@@ -1,4 +1,4 @@
-class Api::V1::CategoriesController < ActionController::Base
+class Api::V1::CategoriesController < ApplicationController
   def show
     @category = Category.find_by(id: params[:id])
   end

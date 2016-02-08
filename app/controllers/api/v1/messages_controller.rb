@@ -1,4 +1,5 @@
-class Api::V1::MessagesController < ActionController::Base
+class Api::V1::MessagesController < ApplicationController
+  before_action :authenticate_with_token!
   before_action :find_message, only: [:show, :update, :destroy]
   def show
   end

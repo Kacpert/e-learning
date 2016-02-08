@@ -1,4 +1,4 @@
-class Api::V1::SectionsController < ActionController::Base
+class Api::V1::SectionsController < ApplicationController
   before_action :find_section, only: [:show, :update, :destroy]
   def show
   end

@@ -1,4 +1,4 @@
-class Api::V1::QuizzesController < ActionController::Base
+class Api::V1::QuizzesController < ApplicationController
   before_action :find_quiz, only: [:show, :update, :destroy]
   def show
   end

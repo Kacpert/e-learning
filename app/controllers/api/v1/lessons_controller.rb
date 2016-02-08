@@ -1,4 +1,4 @@
-class Api::V1::LessonsController < ActionController::Base
+class Api::V1::LessonsController < ApplicationController
   before_action :find_lesson, only: [:show, :update, :destroy]
   def show
   end
