@@ -1,5 +1,4 @@
 class Api::V1::UsersController < ApplicationController
-  protect_from_forgery with: :null_session
   before_action :authenticate_with_token!, only: [:update, :destroy]
   respond_to :json
   layout false
