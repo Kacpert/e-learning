@@ -65,8 +65,8 @@ Rails.application.routes.draw do
       resources :sessions, :only => [:create]
       delete 'sessions' => 'sessions#destroy'
       resources :users, only: [:show, :create]
-      put 'user' => 'users#update'
-      delete 'user' => 'users#destroy' 
+      put 'users' => 'users#update'
+      delete 'users' => 'users#destroy' 
       resources :messages, only: [:index ,:show, :create, :update, :destroy ]
       resources :categories, only: [:show, :index]
       resources :sections, only: [:show, :index, :create, :update, :destroy]
