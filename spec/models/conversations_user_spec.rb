@@ -1,5 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ConversationsUser, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should respond_to(:conversation) }
+  it { should respond_to(:user) }
 end

@@ -62,6 +62,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
+      resources :conversations
       resources :sessions, :only => [:create]
       delete 'sessions' => 'sessions#destroy'
       resources :users, only: [:show, :create]

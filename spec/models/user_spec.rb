@@ -10,8 +10,9 @@ describe User do
   it { should respond_to(:password_confirmation) }
   it { should respond_to(:groups)                }
   it { should respond_to(:groups_users)          }
-  it { should respond_to(:messages)              }
-  it { should respond_to(:messages_users)        }
+  it { should respond_to(:conversations)         }
+  it { should respond_to(:conversations_users)   }
+  
 
   it { should be_valid }
 
