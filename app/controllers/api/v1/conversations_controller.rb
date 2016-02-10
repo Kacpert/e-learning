@@ -20,6 +20,7 @@ class Api::V1::ConversationsController < ApplicationController
   def update
     if params.has_key?(:checked)
       current_user.messages_users.where(displayed: false, conversation_id: params[:id]).update_all(displayed: true)
+      render json: {success: 'messages successfully displayed.'}, status: 200
     end
   end
 
