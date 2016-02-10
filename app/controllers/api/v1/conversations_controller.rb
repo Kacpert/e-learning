@@ -1,6 +1,17 @@
 class Api::V1::ConversationsController < ApplicationController
   before_action :authenticate_with_token!
 
+  def show
+    permission(@conversation)
+    @conversation = Conversation.find(params[:id])
+    if params.has_key?(:from)
+      @messages - @conversation.messages.where('created_at >= ?', params[:from])
+    else
+      @messages = @conversation.messages
+    end
+
+  end
+
   def index
     @user = current_user
     @conversations = @user.conversations
@@ -25,6 +36,11 @@ class Api::V1::ConversationsController < ApplicationController
   end
 
   private
+
+  def permission(con)
+    render json: { errors: "Not authenticated" },
+           status: :unauthorized unless con.users.include?(current_user)
+  end
 
   def conversation_params
     params.permit(:user_ids => [])
