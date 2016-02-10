@@ -10,10 +10,11 @@ class Api::V1::MessagesController < ApplicationController
 
   def create
     params[:user_id] = current_user.id
-    message = Message.new(message_params)
     unless params.has_key?(:conversation_id) and params[:conversation_id].to_i.present?
-       message.conversation_id = Conversation.create(user_ids: params[:user_ids]).id
+      params[:conversation_id] = Conversation.create(user_ids: params[:user_ids]).id
     end
+    params[:user_ids] = Conversation.find(params[:conversation_id]).users.ids unless params.has_key?(:user_ids)
+      message = Message.new(message_params)
     if message.save
       message.conversation.update(updated_at: message.created_at)
       render json: message, status: 201, location: api_v1_message_url(message)
