@@ -17,6 +17,12 @@ class Api::V1::ConversationsController < ApplicationController
     end
   end
 
+  def update
+    if params.has_key?(:checked)
+      current_user.messages_users.where(displayed: false, conversation_id: params[:id]).update_all(displayed: true)
+    end
+  end
+
   private
 
   def conversation_params
