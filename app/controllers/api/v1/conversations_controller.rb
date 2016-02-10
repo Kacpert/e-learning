@@ -1,5 +1,11 @@
 class Api::V1::ConversationsController < ApplicationController
   before_action :authenticate_with_token!
+
+  def index
+    @user = current_user
+    @conversations = @user.conversations
+  end
+
   def create
     params[:user_ids] += [ current_user.id ]
     conversation = Conversation.new(conversation_params)

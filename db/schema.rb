@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160208174259) do
+ActiveRecord::Schema.define(version: 20160210102119) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -102,11 +102,24 @@ ActiveRecord::Schema.define(version: 20160208174259) do
     t.datetime "updated_at",      null: false
     t.integer  "group_id"
     t.integer  "conversation_id"
+    t.integer  "replay_id"
   end
 
   add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id"
   add_index "messages", ["group_id"], name: "index_messages_on_group_id"
   add_index "messages", ["user_id"], name: "index_messages_on_user_id"
+
+  create_table "messages_users", force: :cascade do |t|
+    t.integer  "message_id"
+    t.integer  "user_id"
+    t.boolean  "displayed",       default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.integer  "conversation_id"
+  end
+
+  add_index "messages_users", ["message_id"], name: "index_messages_users_on_message_id"
+  add_index "messages_users", ["user_id"], name: "index_messages_users_on_user_id"
 
   create_table "question_answers", force: :cascade do |t|
     t.string   "description"

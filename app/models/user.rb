@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_many :messages_users
+  has_many :messages, through: :messages_users
   has_many :conversations_users
   has_many :conversations, through: :conversations_users
   has_many :groups_users

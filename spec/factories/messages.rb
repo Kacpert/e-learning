@@ -1,7 +1,10 @@
 FactoryGirl.define do
   factory :message do
-    user nil
-text "MyText"
+    user
+    text "MyText"
+    after(:create) do |mess|
+      mess.users << FactoryGirl.create_list(:user, 4)
+    end
   end
 
 end

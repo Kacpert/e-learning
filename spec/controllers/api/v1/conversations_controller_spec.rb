@@ -2,8 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::ConversationsController, type: :controller do
   before(:each) do
+   @message = create(:message)
    request.headers['Content-Type'] = 'application/json' 
-   @user = create(:user)
+   @user = User.first
    request.headers['Authorization'] = @user.auth_token 
  end
 
@@ -20,6 +21,10 @@ RSpec.describe Api::V1::ConversationsController, type: :controller do
       end
       it { should respond_with 201 }
     end
+  end
+
+  describe 'GET #index and POST #display' do
+
   end
 
 end

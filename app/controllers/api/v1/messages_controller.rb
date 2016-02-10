@@ -9,13 +9,19 @@ class Api::V1::MessagesController < ApplicationController
   end
 
   def create
+    params[:user_id] = current_user.id
     message = Message.new(message_params)
+    unless params.has_key?(:conversation_id) and params[:conversation_id].to_i.present?
+       message.conversation_id = Conversation.create(user_ids: params[:user_ids]).id
+    end
     if message.save
+      message.conversation.update(updated_at: message.created_at)
       render json: message, status: 201, location: api_v1_message_url(message)
     else
     render json: { errors: message.errors }, status: 422
     end
   end
+
 
   def update
     if params.has_key?(:displayed)
@@ -48,6 +54,6 @@ class Api::V1::MessagesController < ApplicationController
   end
 
   def message_params
-    params.permit(:text, :user_ids => [])
+    params.permit(:text, :user_id, :conversation_id, :replay_id, :user_ids => [])
   end
 end
