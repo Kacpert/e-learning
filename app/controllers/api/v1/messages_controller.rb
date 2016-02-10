@@ -16,7 +16,8 @@ class Api::V1::MessagesController < ApplicationController
     params[:user_ids] = Conversation.find(params[:conversation_id]).users.ids unless params.has_key?(:user_ids)
       message = Message.new(message_params)
     if message.save
-      message.conversation.update(updated_at: message.created_at)
+      #update updated_at in conversation
+      message.conversation.update(title: message.title)
       render json: message, status: 201, location: api_v1_message_url(message)
     else
     render json: { errors: message.errors }, status: 422
@@ -55,6 +56,6 @@ class Api::V1::MessagesController < ApplicationController
   end
 
   def message_params
-    params.permit(:text, :user_id, :conversation_id, :replay_id, :user_ids => [])
+    params.permit(:text, :user_id, :conversation_id, :title, :replay_id, :user_ids => [])
   end
 end

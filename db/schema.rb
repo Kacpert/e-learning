@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160210102119) do
+ActiveRecord::Schema.define(version: 20160210114128) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -29,10 +29,8 @@ ActiveRecord::Schema.define(version: 20160210102119) do
   add_index "categories_courses", ["category_id"], name: "index_categories_courses_on_category_id"
   add_index "categories_courses", ["course_id"], name: "index_categories_courses_on_course_id"
 
-  create_table "conversations", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+# Could not dump table "conversations" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "conversations_users", force: :cascade do |t|
     t.integer  "user_id"
@@ -95,19 +93,8 @@ ActiveRecord::Schema.define(version: 20160210102119) do
     t.string   "subtitles_url"
   end
 
-  create_table "messages", force: :cascade do |t|
-    t.integer  "user_id"
-    t.text     "text"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.integer  "group_id"
-    t.integer  "conversation_id"
-    t.integer  "replay_id"
-  end
-
-  add_index "messages", ["conversation_id"], name: "index_messages_on_conversation_id"
-  add_index "messages", ["group_id"], name: "index_messages_on_group_id"
-  add_index "messages", ["user_id"], name: "index_messages_on_user_id"
+# Could not dump table "messages" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "messages_users", force: :cascade do |t|
     t.integer  "message_id"
