@@ -2,8 +2,8 @@ class Api::V1::ConversationsController < ApplicationController
   before_action :authenticate_with_token!
 
   def show
-    permission(@conversation)
     @conversation = Conversation.find(params[:id])
+    permission(@conversation)
     if params.has_key?(:from)
       @messages - @conversation.messages.where('created_at >= ?', params[:from])
     else
