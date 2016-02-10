@@ -1,4 +1,5 @@
 class Message < ActiveRecord::Base
+  default_scope { order(updated_at: :desc) }
   belongs_to :user
   belongs_to :conversation
   has_many :messages_users
