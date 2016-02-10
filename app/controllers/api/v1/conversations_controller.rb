@@ -5,7 +5,7 @@ class Api::V1::ConversationsController < ApplicationController
     @conversation = Conversation.find(params[:id])
     permission(@conversation)
     if params.has_key?(:from)
-      @messages - @conversation.messages.where('created_at >= ?', params[:from])
+      @messages = @conversation.messages.where('created_at >= ?', params[:from])
     else
       @messages = @conversation.messages
     end
