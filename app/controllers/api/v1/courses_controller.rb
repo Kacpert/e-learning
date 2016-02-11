@@ -6,16 +6,7 @@ class Api::V1::CoursesController < ApplicationController
   end
 
   def index
-    @categories = []
-
-    allCourses = {
-      category_title: "All courses",
-      courses: Course.all
-    }
-
-    @categories.push(allCourses)
-    
-    render json: @categories, status: 200
+    render json: Course.categories, status: 200
   end
 
   def create
