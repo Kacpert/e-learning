@@ -4,7 +4,80 @@ class Api::V1::CoursesController < ApplicationController
   end
 
   def index
-    @courses = Course.all
+    a = [
+        {
+            "category_title":"Your courses",
+            "courses":[
+                {
+                    "id":1,
+                    "title":"Small Satellites",
+                    "img_big":"https://dl.dropboxusercontent.com/u/47583785/e-learning/course/satellites.jpg",
+                    "img_medium":"https://dl.dropboxusercontent.com/u/47583785/e-learning/course/satellites.jpg",
+                    "img_small":"https://dl.dropboxusercontent.com/u/47583785/e-learning/course/satellites.jpg",
+                    "joined":true,
+                    "progress":"0.7"
+                },
+                {
+                    "id":1,
+                    "title":"Space Stations",
+                    "img_big":"https://dl.dropboxusercontent.com/u/47583785/e-learning/course/space-stations.jpg",
+                    "img_medium":"https://dl.dropboxusercontent.com/u/47583785/e-learning/course/space-stations.jpg",
+                    "img_small":"https://dl.dropboxusercontent.com/u/47583785/e-learning/course/space-stations.jpg",
+                    "joined":true,
+                    "progress":"0.2"
+                }
+            ]
+        },
+        {
+            "category_title":"Most Popular",
+            "courses":[
+                {
+                    "id":3,
+                    "title":"Small Satellites",
+                    "img_big":"https://dl.dropboxusercontent.com/u/47583785/e-learning/course/satellites.jpg",
+                    "img_medium":"https://dl.dropboxusercontent.com/u/47583785/e-learning/course/satellites.jpg",
+                    "img_small":"https://dl.dropboxusercontent.com/u/47583785/e-learning/course/satellites.jpg",
+                    "joined":true,
+                    "progress":"0.0"
+                },
+                {
+                    "id":4,
+                    "title":"Space Stations",
+                    "img_big":"https://dl.dropboxusercontent.com/u/47583785/e-learning/course/space-stations.jpg",
+                    "img_medium":"https://dl.dropboxusercontent.com/u/47583785/e-learning/course/space-stations.jpg",
+                    "img_small":"https://dl.dropboxusercontent.com/u/47583785/e-learning/course/space-stations.jpg",
+                    "joined":false,
+                    "progress":"0.0"
+                }
+            ]
+        },
+        {
+            "category_title":"Becuase you have ended Plazma Physics",
+            "courses":[
+                {
+                    "id":5,
+                    "title":"Small Satellites",
+                    "img_big":"https://dl.dropboxusercontent.com/u/47583785/e-learning/course/satellites.jpg",
+                    "img_medium":"https://dl.dropboxusercontent.com/u/47583785/e-learning/course/satellites.jpg",
+                    "img_small":"https://dl.dropboxusercontent.com/u/47583785/e-learning/course/satellites.jpg",
+                    "joined":false,
+                    "progress":"0.0"
+                },
+                {
+                    "id":6,
+                    "title":"Space Stations",
+                    "img_big":"https://dl.dropboxusercontent.com/u/47583785/e-learning/course/space-stations.jpg",
+                    "img_medium":"https://dl.dropboxusercontent.com/u/47583785/e-learning/course/space-stations.jpg",
+                    "img_small":"https://dl.dropboxusercontent.com/u/47583785/e-learning/course/space-stations.jpg",
+                    "joined":false,
+                    "progress":"0.0"
+                }
+            ]
+        }
+    ]
+
+    render json: a, status: 200
+    #@courses = Course.all
   end
 
   def create
