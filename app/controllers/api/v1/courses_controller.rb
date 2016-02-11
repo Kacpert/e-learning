@@ -1,11 +1,21 @@
 class Api::V1::CoursesController < ApplicationController
   before_action :find_course, only: [:show, :update, :destroy]
   respond_to :json
+
   def show
   end
 
   def index
-    @courses = Course.all
+    @categories = []
+
+    allCourses = {
+      category_title: "All courses",
+      courses: Course.all
+    }
+
+    @categories.push(allCourses)
+    
+    render json: @categories, status: 200
   end
 
   def create
