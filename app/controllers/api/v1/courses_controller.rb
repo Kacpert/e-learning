@@ -1,5 +1,6 @@
 class Api::V1::CoursesController < ApplicationController
   before_action :find_course, only: [:show, :update, :destroy]
+  respond_to :json
   def show
   end
 
