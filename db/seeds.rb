@@ -31,22 +31,21 @@
 #   Message.create(user: user, text: Faker::Lorem.paragraphs)
 # end
 
-SortingCourse.create(name: 'Your courses', user_dependency: true)
-SortingCourse.create(name: 'Most REcent', time_dependency: true)
-
+# SortingCourse.create(name: 'Your courses', user_dependency: true)
+# SortingCourse.create(name: 'Most REcent', time_dependency: true)
+# 10.times do
+# User.create(email: Faker::Internet.email, login: Faker::Internet.domain_word, password: 'password', password_confirmation: 'password')
+# end
 #messages
 u_1 = User.last(3)
 u_2 = User.last(4)
 u_3 = User.last(9)
-c_1 = Convesation.create(title: Faker::Name.name)
-c_2 = Convesation.create(title: Faker::Name.name)
-c_3 = Convesation.create(title: Faker::Name.name)
-c_1 << u_1
-c_2 << u_2
-c_3 << u_3
-create_messages(u_1, c_1)
-create_messages(u_2, c_2)
-create_messages(u_3, c_3)
+c_1 = Conversation.create(title: Faker::Name.name)
+c_2 = Conversation.create(title: Faker::Name.name)
+c_3 = Conversation.create(title: Faker::Name.name)
+c_1.users << u_1
+c_2.users << u_2
+c_3.users << u_3
 def create_messages(users, conversation)
   10.times do
     users.each do |user|
@@ -54,3 +53,8 @@ def create_messages(users, conversation)
     end
   end
 end
+create_messages(u_1, c_1)
+create_messages(u_2, c_2)
+create_messages(u_3, c_3)
+
+puts 'seedd cpomplerewt'
