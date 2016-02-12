@@ -21,12 +21,15 @@
 #     )
 # end
 
-user = User.first
-3.times do
-  group = Group.create(name: Faker::Company.catch_phrase)
-  user.groups << group
-end
+# user = User.first
+# 3.times do
+#   group = Group.create(name: Faker::Company.catch_phrase)
+#   user.groups << group
+# end
 
-5.times do
-  Message.create(user: user, text: Faker::Lorem.paragraphs)
-end
+# 5.times do
+#   Message.create(user: user, text: Faker::Lorem.paragraphs)
+# end
+
+SortingCourse.create(name: 'Your courses', user_dependency: true)
+SortingCourse.create(name: 'Most REcent', time_dependency: true)

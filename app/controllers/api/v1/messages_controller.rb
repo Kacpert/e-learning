@@ -56,6 +56,6 @@ class Api::V1::MessagesController < ApplicationController
   end
 
   def message_params
-    params.permit(:text, :user_id, :conversation_id, :title, :replay_id, :user_ids => [])
+    params.permit(:text, :user_id, :conversation_id, :title, :replay_id, :user_ids => [], :user_logins => [])
   end
 end

@@ -6,6 +6,13 @@ class Api::V1::CoursesController < ApplicationController
   end
 
   def index
+    res = []
+    SortingCourse.all.each do |sc|
+      if sc.user_dependency && current_user
+        #current_user.courses
+      elsif sc.time_dependency
+      end          
+    end
     render json: Course.categories, status: 200
   end
 

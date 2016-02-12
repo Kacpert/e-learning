@@ -14,7 +14,11 @@ class Api::V1::ConversationsController < ApplicationController
 
   def index
     @user = current_user
-    @conversations = @user.conversations
+    if params.has_key?(:form)
+      @conversations = @user.conversations.where('created_at >= ?', params[:from])
+    else
+      @conversations = @user.conversations
+    end
   end
 
   def create

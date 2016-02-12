@@ -80,3 +80,5 @@ end
 gem 'pry'
 
 gem 'database_cleaner'
+
+gem 'habtm_generator', :group => :development

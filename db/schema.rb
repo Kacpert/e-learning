@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160210114128) do
+ActiveRecord::Schema.define(version: 20160212132153) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -62,6 +62,13 @@ ActiveRecord::Schema.define(version: 20160210114128) do
   end
 
   add_index "courses", ["user_id"], name: "index_courses_on_user_id"
+
+  create_table "courses_sorting_courses", id: false, force: :cascade do |t|
+    t.integer "course_id"
+    t.integer "sorting_course_id"
+  end
+
+  add_index "courses_sorting_courses", ["course_id", "sorting_course_id"], name: "courses_sorting_courses_index", unique: true
 
   create_table "groups", force: :cascade do |t|
     t.string   "name"
@@ -172,6 +179,15 @@ ActiveRecord::Schema.define(version: 20160210114128) do
 
   add_index "sequences", ["course_id"], name: "index_sequences_on_course_id"
 
+  create_table "sorting_courses", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "user_dependency", default: false
+    t.boolean  "time_dependency", default: false
+    t.integer  "order"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
   create_table "tests", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -195,6 +211,7 @@ ActiveRecord::Schema.define(version: 20160210114128) do
     t.string   "last_name"
     t.boolean  "admin",                  default: false
     t.string   "auth_token",             default: ""
+    t.string   "login"
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true

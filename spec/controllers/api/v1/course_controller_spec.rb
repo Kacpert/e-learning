@@ -3,27 +3,27 @@ require 'rails_helper'
 RSpec.describe Api::V1::CoursesController, type: :controller do
 
 
-  describe 'GET #index' do
-      context 'when you have 15 courses' do
-        before :each do 
-          create_list(:course, 15)
-          @first = Course.first
-          get :index, format: :json
-        end
+  # describe 'GET #index' do
+  #     context 'when you have 15 courses' do
+  #       before :each do 
+  #         create_list(:course, 15)
+  #         @first = Course.first
+  #         get :index, format: :json
+  #       end
 
-          #should have values
-        it { expect(response).to be_success }
-        ['name', 'description', 'long_description', 'author', 'order', 'id'].each do |param|
-          it ("json[0]#{param} eq @course.#{param}"){ expect(json[0][param]).to eq(@first[param]) }
-        end
-        it { expect(json[0]).to have_key('image_url') } 
-        #should not have
-        ['created_at', 'updated_at', 'image_file_name', 'image_updated_at',
-         'image_content_type', 'image_file_size'].each do |key|
-          it { expect(json[0]).to_not have_key(key) }
-        end
-      end
-  end
+  #         #should have values
+  #       it { expect(response).to be_success }
+  #       ['name', 'description', 'long_description', 'author', 'order', 'id'].each do |param|
+  #         it ("json[0]#{param} eq @course.#{param}"){ expect(json[0][param]).to eq(@first[param]) }
+  #       end
+  #       it { expect(json[0]).to have_key('image_url') } 
+  #       #should not have
+  #       ['created_at', 'updated_at', 'image_file_name', 'image_updated_at',
+  #        'image_content_type', 'image_file_size'].each do |key|
+  #         it { expect(json[0]).to_not have_key(key) }
+  #       end
+  #     end
+  # end
 
   describe 'POST #create' do
       context 'valid data' do

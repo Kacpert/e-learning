@@ -62,6 +62,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
+      get 'users/friends' => 'users#index'
       resources :conversations
       resources :sessions, :only => [:create]
       delete 'sessions' => 'sessions#destroy'

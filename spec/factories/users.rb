@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :user do
+    login                   { Faker::Internet.user_name }
     email                   { Faker::Internet.email }
     first_name              'John'
     last_name               'Doel'
@@ -9,6 +10,7 @@ FactoryGirl.define do
   end
 
   factory :admin, class: User do
+    login                   { Faker::Internet.user_name }
     email                   'admin@admin.com'
     first_name              'Admin'
     last_name               'Doel'
