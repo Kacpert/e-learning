@@ -4,6 +4,8 @@ class Course < ActiveRecord::Base
   has_many :groups
   has_many :categories_courses
   has_many :categories, through: :categories_courses
+  has_many :courses_users
+  has_many :users, through: :courses_users
 
   validates :name, :description, presence: true
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"

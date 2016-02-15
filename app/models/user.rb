@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   has_many :conversations, through: :conversations_users
   has_many :groups_users
   has_many :groups, through: :groups_users
+  has_many :courses_users
+  has_many :courses, through: :courses_users
   before_create :generate_authentication_token!
   validates :auth_token, uniqueness: true
   validates :login, uniqueness: true
