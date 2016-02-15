@@ -26,7 +26,7 @@ describe Api::V1::SessionsController do
     context "when the credentials are incorrect" do
 
       before(:each) do
-        credentials = { email: @user.email, password: "invalidpassword" }
+        credentials = { email: "@user.email", password: "invalidpassword" }
         post :create, credentials 
       end
 
