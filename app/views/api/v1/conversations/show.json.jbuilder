@@ -1,7 +1,5 @@
 json.id @conversation.id
 json.title @conversation.title
-json.updated_at @conversation.updated_at.strftime("%Y-%m-%d %H:%M:%S")
-json.created_at @conversation.created_at.strftime("%Y-%m-%d %H:%M:%S")
 json.messages @messages do |message|
   json.id message.id
   json.user_id message.user_id
