@@ -17,13 +17,12 @@ class Api::V1::MessagesController < ApplicationController
       message = Message.new(message_params)
     if message.save
       #update updated_at in conversation
-      message.conversation.update(title: message.title)
+      #message.conversation.update(title: message.title) if message.title.present?
       render json: message, status: 201, location: api_v1_message_url(message)
     else
     render json: { errors: message.errors }, status: 422
     end
   end
-
 
   def update
     if params.has_key?(:displayed)
@@ -31,7 +30,6 @@ class Api::V1::MessagesController < ApplicationController
       m.displayed = true
       m.save
     end
-
 
     if @message.update(message_params)
       render json: @message, status: 200, location: api_v1_message_url(@message)
