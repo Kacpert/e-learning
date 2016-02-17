@@ -35,6 +35,11 @@ class Api::V1::UsersController < ApplicationController
     head 204
   end
 
+  def search
+    @users = User.ransack(email_cont: params[:text]).result
+    render :index
+  end
+
   private
 
     def user_params

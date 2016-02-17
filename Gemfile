@@ -82,3 +82,4 @@ gem 'pry'
 gem 'database_cleaner'
 
 gem 'habtm_generator', :group => :development
+gem 'ransack', github: 'activerecord-hackery/ransack'
