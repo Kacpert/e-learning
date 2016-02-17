@@ -36,7 +36,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def search
-    @users = User.ransack(email_cont: params[:text]).result
+    @users = User.ransack(email_or_login_cont: params[:text]).result
     render :index
   end
 
