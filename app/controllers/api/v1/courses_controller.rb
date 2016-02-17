@@ -6,14 +6,10 @@ class Api::V1::CoursesController < ApplicationController
   end
 
   def index
-    res = []
-    SortingCourse.all.each do |sc|
-      if sc.user_dependency && current_user
-        #current_user.courses
-      elsif sc.time_dependency
-      end          
+    @categories = []
+    SortingCourse.all.each do |filter|
+      @categories << { category_title: filter.name, courses: SortingCoursesService.new(filter, current_user).courses }
     end
-    render json: Course.categories, status: 200
   end
 
   def create
