@@ -8,6 +8,7 @@ RSpec.describe Course, type: :model do
 
   context 'parametrs' do
     it { should respond_to(:image) }
+    it { should respond_to(:image_url) }
     it { should respond_to(:name) }
     it { should respond_to(:description) }
     it { should respond_to(:short_description) }
@@ -20,6 +21,7 @@ RSpec.describe Course, type: :model do
 
   context 'validates' do
     it { should validate_presence_of(:name) }
+    it { should validate_length_of(:short_description) }
   end
 
 

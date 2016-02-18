@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160218121546) do
+ActiveRecord::Schema.define(version: 20160218141527) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20160218121546) do
     t.integer  "order"
     t.integer  "user_id"
     t.boolean  "temporal",           default: false
+    t.string   "image_url"
   end
 
   add_index "courses", ["user_id"], name: "index_courses_on_user_id"
