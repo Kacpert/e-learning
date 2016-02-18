@@ -10,7 +10,7 @@ RSpec.describe Course, type: :model do
     it { should respond_to(:image) }
     it { should respond_to(:name) }
     it { should respond_to(:description) }
-    it { should respond_to(:long_description) }
+    it { should respond_to(:short_description) }
     it { should respond_to(:author) }
     it { should respond_to(:user) }
     it { should respond_to(:categories) }
@@ -20,7 +20,6 @@ RSpec.describe Course, type: :model do
 
   context 'validates' do
     it { should validate_presence_of(:name) }
-    it { should validate_presence_of(:description)}
   end
 
 

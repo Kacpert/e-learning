@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::CoursesController, type: :controller do
+  before :each do
+    @admin = create(:user, role: 'admin')
+    request.headers['Authorization'] = @admin.auth_token
+  end
+
 
 
   describe 'GET #index' do
@@ -11,7 +16,7 @@ RSpec.describe Api::V1::CoursesController, type: :controller do
       end
         #should have values
       it { expect(response).to be_success }
-      ['name', 'description', 'long_description', 'author', 'order', 'id'].each do |param|
+      ['name', 'description', 'short_description', 'author', 'order', 'id'].each do |param|
         it ("json should have key: json[0]['courses'][0][#{param}]"){ expect(json[0]['courses'][0]).to have_key(param) }
       end
       it { expect(json[0]).to have_key('category_title') } 
@@ -28,7 +33,7 @@ RSpec.describe Api::V1::CoursesController, type: :controller do
           attributes = attributes_for(:course)
           post :create, attributes, format: :json  
           should respond_with 201
-          [:image, :name, :description, :long_description, :author, :user, :categories, :order, :temporal].each do |attr|
+          [:image, :name, :description, :short_description, :author, :user, :categories, :order, :temporal].each do |attr|
             expect(json_response[attr]).to eq(attributes[attr])
           end
         end
@@ -56,7 +61,7 @@ RSpec.describe Api::V1::CoursesController, type: :controller do
 
         #should have values
         it { expect(response).to be_success }
-        ['name', 'description', 'long_description', 'author', 'order', 'id', 'temporal'].each do |param|
+        ['name', 'description', 'short_description', 'author', 'order', 'id', 'temporal'].each do |param|
           it ("#{param} eq @course.#{param}"){ expect(json[param]).to eq(@course[param]) }
         end
         it { expect(json).to have_key('image_url') } 
@@ -79,12 +84,12 @@ RSpec.describe Api::V1::CoursesController, type: :controller do
     describe 'PUT #update' do
       context 'valid data' do 
         before do
-          @attributes = {id: @course.id, name: 'name', description: 'description', long_description: 'long_description', author: 'author', order: 14 }
+          @attributes = {id: @course.id, name: 'name', description: 'description', short_description: 'short_description', author: 'author', order: 14 }
           put :update, @attributes, format: :json
           @course.reload
         end       
         it { should respond_with 200 }
-        { name: 'name', description: 'description', long_description: 'long_description', author: 'author', order: 14 }.each do |param|
+        { name: 'name', description: 'description', short_description: 'short_description', author: 'author', order: 14 }.each do |param|
           it("after update json[#{param.first}] should be eq #{param.second}") do
             expect(json_response[param.first]).to eq(param.second) 
           end
@@ -106,3 +111,4 @@ RSpec.describe Api::V1::CoursesController, type: :controller do
     end 
   end
 end
+

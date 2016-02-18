@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :course do
     name                  'New course'
     description           'some desc'
-    long_description      'long description'
+    short_description      'short_description'
     author                'autor'
     order                  1
     temporal               true

@@ -7,9 +7,9 @@ class Ability
     user ||= User.new # guest user (not logged in)
     case user.role
       when 'admin'
-        can :menage, :all
+        can :manage, :all
       when 'teacher'
-        can :menage, Course
+        can :manage, Course
       when 'normal'
         can :read, :all
     end

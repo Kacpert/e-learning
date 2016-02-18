@@ -1,6 +1,6 @@
 class Api::V1::CoursesController < ApplicationController
-  load_and_authorize_resource
   before_action :find_course, only: [:show, :update, :destroy]
+  authorize_resource
   respond_to :json
 
   def show
@@ -46,6 +46,6 @@ class Api::V1::CoursesController < ApplicationController
   end
 
   def course_params
-    params.permit(:name, :description, :long_description, :author, :order, :image, :temporal)
+    params.permit(:name, :description, :long_description, :author, :order, :image, :temporal, :short_description)
   end
 end
