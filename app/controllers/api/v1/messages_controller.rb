@@ -22,18 +22,18 @@ class Api::V1::MessagesController < ApplicationController
       params[:conversation_id] = conversation.id
     end
     params[:user_ids] = Conversation.find(params[:conversation_id]).users.ids unless params.has_key?(:user_ids)
-      message = Message.new(message_params)
-    if message.save
+      @message = Message.new(message_params)
+    if @message.save
       #update updated_at in conversation
-      conversation = message.conversation
-      if message.title.present?
-        conversation.update(title: message.title) 
+      conversation = @message.conversation
+      if @message.title.present?
+        conversation.update(title: @message.title) 
       else
-        conversation.update(updated_at: message.created_at) 
+        conversation.update(updated_at: @message.created_at) 
       end
-      render json: message, status: 201, location: api_v1_message_url(message)
+      render :create, status: 201, location: api_v1_message_url(@message)
     else
-    render json: { errors: message.errors }, status: 422
+    render json: { errors: @message.errors }, status: 422
     end
   end
 
