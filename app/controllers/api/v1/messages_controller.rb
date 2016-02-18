@@ -17,7 +17,9 @@ class Api::V1::MessagesController < ApplicationController
       user_ids =  params[:user_ids]
       user_ids.to_a
       user_ids << current_user.id
-      params[:conversation_id] = Conversation.create(user_ids: user_ids, title: params[:title]).id
+      conversation = Conversation.create(title: params[:title])
+      conversation.users << User.find(params[:user_ids])
+      params[:conversation_id] = conversation.id
     end
     params[:user_ids] = Conversation.find(params[:conversation_id]).users.ids unless params.has_key?(:user_ids)
       message = Message.new(message_params)
