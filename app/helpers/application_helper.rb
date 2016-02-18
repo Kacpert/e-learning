@@ -12,4 +12,8 @@ module ApplicationHelper
     end
     nil
   end
+
+  def image_url(object)
+    {small: object.image.url(:thumb), medium: object.image.url(:medium)}
+  end
 end
