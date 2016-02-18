@@ -1,4 +1,5 @@
 class Api::V1::CoursesController < ApplicationController
+  load_and_authorize_resource
   before_action :find_course, only: [:show, :update, :destroy]
   respond_to :json
 

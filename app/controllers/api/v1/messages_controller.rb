@@ -21,7 +21,11 @@ class Api::V1::MessagesController < ApplicationController
     if message.save
       #update updated_at in conversation
       conversation = message.conversation
-      conversation.update(title: message.title) if message.title.present?
+      if message.title.present?
+        conversation.update(title: message.title) 
+      else
+        conversation.update(updated_at: message.created_at) 
+      end
       render json: message, status: 201, location: api_v1_message_url(message)
     else
     render json: { errors: message.errors }, status: 422

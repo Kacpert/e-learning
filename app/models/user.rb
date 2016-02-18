@@ -16,7 +16,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-
+  def to_s
+    self.login
+  end
 
   def generate_authentication_token!
     begin

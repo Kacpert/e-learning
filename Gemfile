@@ -83,3 +83,4 @@ gem 'database_cleaner'
 
 gem 'habtm_generator', :group => :development
 gem 'ransack', github: 'activerecord-hackery/ransack'
+gem 'cancancan', '~> 1.10'
