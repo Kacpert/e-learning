@@ -11,7 +11,10 @@ class Api::V1::MessagesController < ApplicationController
   def create
     params[:user_id] = current_user.id
     unless params.has_key?(:conversation_id) and params[:conversation_id].to_i.present?
-      params[:conversation_id] = Conversation.create(user_ids: (params[:user_ids] << current_user.id), title: params[:title]).id
+      user_ids =  params[:user_ids]
+      user_ids.to_a
+      user_ids << current_user.id
+      params[:conversation_id] = Conversation.create(user_ids: user_ids, title: params[:title]).id
     end
     params[:user_ids] = Conversation.find(params[:conversation_id]).users.ids unless params.has_key?(:user_ids)
       message = Message.new(message_params)
