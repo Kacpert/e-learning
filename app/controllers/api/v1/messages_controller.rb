@@ -9,6 +9,9 @@ class Api::V1::MessagesController < ApplicationController
   end
 
   def create
+    if params.has_key?(:user_logins) and params[:user_logins].any?
+      params[:user_ids] = User.where(login: params[:user_logins]).map(&:id)
+    end
     params[:user_id] = current_user.id
     unless params.has_key?(:conversation_id) and params[:conversation_id].to_i.present?
       user_ids =  params[:user_ids]

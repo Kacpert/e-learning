@@ -1,4 +1,9 @@
 class User < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+         
   has_many :messages_users
   has_many :messages, through: :messages_users
   has_many :conversations_users
@@ -11,10 +16,7 @@ class User < ActiveRecord::Base
   validates :auth_token, uniqueness: true
   validates :login, uniqueness: true
   validates :login, presence: true
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  validates :role, inclusion: { in: %w(admin teacher normal), message: "%{value} is not a valid role" }
 
   def to_s
     self.login
