@@ -16,7 +16,7 @@ RSpec.describe Api::V1::CoursesController, type: :controller do
       end
         #should have values
       it { expect(response).to be_success }
-      ['name', 'description', 'short_description', 'author', 'order', 'id'].each do |param|
+      ['name', 'description', 'short_description', 'author', 'id'].each do |param|
         it ("json should have key: json[0]['courses'][0][#{param}]"){ expect(json[0]['courses'][0]).to have_key(param) }
       end
       it { expect(json[0]).to have_key('category_title') } 

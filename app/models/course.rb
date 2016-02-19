@@ -1,6 +1,7 @@
 class Course < ActiveRecord::Base
   has_and_belongs_to_many :sorting_courses
   belongs_to :user
+  has_many :sections
   has_many :groups
   has_many :categories_courses
   has_many :categories, through: :categories_courses

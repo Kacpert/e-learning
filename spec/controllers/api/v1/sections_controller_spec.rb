@@ -13,10 +13,10 @@ RSpec.describe Api::V1::SectionsController, type: :controller do
 
           #should have values
         it { expect(response).to be_success }
-        ['name', 'short_description', 'author', 'id'].each do |param|
+        ['name', 'description', 'id', 'order', 'course_id'].each do |param|
           it ("json[0]#{param} eq @section.#{param}"){ expect(json[0][param]).to eq(@first[param]) }
         end
-        it { expect(json[0]).to have_key('image_url') } 
+        it { expect(json[0]).to have_key('image') } 
         #should not have
         ['created_at', 'updated_at', 'image_file_name', 'image_updated_at',
          'image_content_type', 'image_file_size'].each do |key|
@@ -26,14 +26,15 @@ RSpec.describe Api::V1::SectionsController, type: :controller do
   end
 
   describe 'POST #create' do
-      context 'valid data' do
-        it 'should create section end return localitation in header' do
-          attributes = attributes_for(:section)
-          post :create, { section: attributes }, format: :json  
-          should respond_with 201
-          [:image, :name, :description, :long_description, :author, :user, :categories, :order].each do |attr|
-            expect(json_response[attr]).to eq(attributes[attr])
-          end
+      context 'with valid data' do
+        before :each do
+          @attributes = attributes_for(:section)
+          post :create, { section: @attributes }, format: :json  
+        end
+        it { should respond_with 201 }
+        it('should return location in header'){ expect(response.header['Location']).to eq(api_v1_section_url(Section.first)) }
+        [:image, :name, :description, :order, :course_id].each do |attr|
+          it("created response json[#{attr}]"){ expect(json_response[attr]).to eq(@attributes[attr]) }
         end
       end
   end
@@ -51,10 +52,10 @@ RSpec.describe Api::V1::SectionsController, type: :controller do
 
         #should have values
         it { expect(response).to be_success }
-        ['name', 'short_description', 'author', 'id'].each do |param|
+        ['name', 'description', 'id', 'order', 'course_id'].each do |param|
           it ("#{param} eq @section.#{param}"){ expect(json[param]).to eq(@section[param]) }
         end
-        it { expect(json).to have_key('image_url') } 
+        it { expect(json).to have_key('image') } 
 
         #should not have
         ['created_at', 'updated_at', 'image_file_name', 'image_updated_at',
@@ -74,7 +75,7 @@ RSpec.describe Api::V1::SectionsController, type: :controller do
     describe 'PUT #update' do
       context 'valid data' do
         it 'should update section' do
-          attributes = { name: 'name', short_description: 'short_description', author: 'author'}
+          attributes = { name: 'name', description: 'description', order: 4, }
           put :update, {id: @section.id, section: attributes }, format: :json
           @section.reload
           should respond_with 200

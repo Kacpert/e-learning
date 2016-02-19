@@ -7,16 +7,17 @@ RSpec.describe Course, type: :model do
   end
 
   context 'parametrs' do
-    it { should respond_to(:image) }
-    it { should respond_to(:image_url) }
-    it { should respond_to(:name) }
-    it { should respond_to(:description) }
+    it { should respond_to(:name)              }
+    it { should respond_to(:user)              }
+    it { should respond_to(:order)             }
+    it { should respond_to(:image)             }
+    it { should respond_to(:author)            }
+    it { should respond_to(:temporal)          }
+    it { should respond_to(:sections)          }
+    it { should respond_to(:image_url)         }
+    it { should respond_to(:categories)        }
+    it { should respond_to(:description)       }
     it { should respond_to(:short_description) }
-    it { should respond_to(:author) }
-    it { should respond_to(:user) }
-    it { should respond_to(:categories) }
-    it { should respond_to(:order) }
-    it { should respond_to(:temporal) }
   end
 
   context 'validates' do

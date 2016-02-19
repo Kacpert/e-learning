@@ -1,5 +1,6 @@
 json.id @section.id
+json.course_id @section.course_id
 json.name @section.name
-json.short_description @section.short_description
-json.author @section.author
-json.image_url asset_url(@section.image.url)
+json.description @section.description
+json.order @section.order
+json.image image_url(@section)
