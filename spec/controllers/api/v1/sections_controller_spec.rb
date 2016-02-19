@@ -32,7 +32,7 @@ RSpec.describe Api::V1::SectionsController, type: :controller do
       context 'with valid data' do
         before :each do
           @attributes = attributes_for(:section)
-          post :create, { section: @attributes }, format: :json  
+          post :create, @attributes, format: :json  
         end
         it { should respond_with 201 }
         it('should return location in header'){ expect(response.header['Location']).to eq(api_v1_section_url(Section.first)) }

@@ -41,6 +41,6 @@ class Api::V1::SectionsController < ApplicationController
   end
 
   def section_params
-    params.require(:section).permit(:name, :description, :order, :image, :course_id)
+    params.permit(:name, :description, :order, :image, :course_id)
   end
 end
