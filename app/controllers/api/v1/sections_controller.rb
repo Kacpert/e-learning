@@ -8,11 +8,11 @@ class Api::V1::SectionsController < ApplicationController
   end
 
   def create
-    section = Section.new(section_params)
-    if section.save
-      render json: section, status: 201, location: api_v1_section_url(section)
+    @section = Section.new(section_params)
+    if @section.save
+      render :create, status: 201, location: api_v1_section_url(@section)
     else
-    render json: { errors: section.errors }, status: 422
+    render json: { errors: @section.errors }, status: 422
     end
   end
 

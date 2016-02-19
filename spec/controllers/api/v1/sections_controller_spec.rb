@@ -33,7 +33,7 @@ RSpec.describe Api::V1::SectionsController, type: :controller do
         end
         it { should respond_with 201 }
         it('should return location in header'){ expect(response.header['Location']).to eq(api_v1_section_url(Section.first)) }
-        [:image, :name, :description, :order, :course_id].each do |attr|
+        [:name, :description, :order, :course_id].each do |attr|
           it("created response json[#{attr}]"){ expect(json_response[attr]).to eq(@attributes[attr]) }
         end
       end
