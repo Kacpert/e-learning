@@ -31,6 +31,7 @@ class Api::V1::MessagesController < ApplicationController
       else
         conversation.update(updated_at: @message.created_at) 
       end
+      @message.messages_users.where(user_id: current_user.id).first.update(displayed: true)
       render :create, status: 201, location: api_v1_message_url(@message)
     else
     render json: { errors: @message.errors }, status: 422
