@@ -1,4 +1,5 @@
 class Api::V1::SectionsController < ApplicationController
+  before_action :authenticate_with_token!, only: [:update, :create, :destroy] 
   before_action :find_section, only: [:show, :update, :destroy]
   def show
   end

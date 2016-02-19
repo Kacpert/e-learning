@@ -15,6 +15,7 @@ FactoryGirl.define do
     first_name              'Admin'
     last_name               'Doel'
     admin                   true
+    role                    'admin'
     password                'password'
     password_confirmation   'password'
   end

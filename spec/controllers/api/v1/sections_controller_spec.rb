@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::SectionsController, type: :controller do
+  before :each do
+    request.headers['Authorization'] = create(:admin).auth_token
+  end
 
 
   describe 'GET #index' do
