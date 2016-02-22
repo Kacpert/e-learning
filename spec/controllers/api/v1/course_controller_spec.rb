@@ -29,13 +29,22 @@ RSpec.describe Api::V1::CoursesController, type: :controller do
 
   describe 'POST #create' do
       context 'valid data' do
+        before :each do
+          @attributes = attributes_for(:course)
+          section_attributes = { sections_attributes: { name: 'name', description: 'description' } }
+          post :create, @attributes, format: :json  
+        end
+
+        it { should respond_with 201 }
         it 'should create course end return localitation in header' do
-          attributes = attributes_for(:course)
-          post :create, attributes, format: :json  
-          should respond_with 201
           [:image, :name, :description, :short_description, :author, :user, :categories, :order, :temporal].each do |attr|
-            expect(json_response[attr]).to eq(attributes[attr])
+            expect(json_response[attr]).to eq(@attributes[attr])
           end
+        end
+        it 'should create nasted section' do
+          section = Section.first
+          expect(section.name).to eq('name')
+          expect(section.description).to eq('description')
         end
       end
       context 'invalid data' do
@@ -65,6 +74,7 @@ RSpec.describe Api::V1::CoursesController, type: :controller do
           it ("#{param} eq @course.#{param}"){ expect(json[param]).to eq(@course[param]) }
         end
         it { expect(json).to have_key('image_url') } 
+        it { expect(json).to have_key('sections') } 
 
         #should not have
         ['created_at', 'updated_at', 'image_file_name', 'image_updated_at',
@@ -111,4 +121,3 @@ RSpec.describe Api::V1::CoursesController, type: :controller do
     end 
   end
 end
-

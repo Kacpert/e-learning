@@ -13,7 +13,6 @@ RSpec.describe Api::V1::SectionsController, type: :controller do
           @first = Section.first
           get :index, format: :json
         end
-
           #should have values
         it { expect(response).to be_success }
         ['name', 'description', 'id', 'order', 'course_id'].each do |param|

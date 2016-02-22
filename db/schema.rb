@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222115927) do
+ActiveRecord::Schema.define(version: 20160222150432) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -167,6 +167,17 @@ ActiveRecord::Schema.define(version: 20160222115927) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "section_components", force: :cascade do |t|
+    t.integer  "section_id"
+    t.integer  "component_id"
+    t.string   "component_type"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "section_components", ["component_id"], name: "index_section_components_on_component_id"
+  add_index "section_components", ["section_id"], name: "index_section_components_on_section_id"
 
   create_table "sections", force: :cascade do |t|
     t.string   "name"
