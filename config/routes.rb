@@ -77,6 +77,7 @@ Rails.application.routes.draw do
       resources :quizzes, only: [:show, :index, :create, :update, :destroy]
         resources :groups
       resources :courses, only: [:show, :index, :create, :update, :destroy] 
+      resources :video_lessons, only: [:show, :index, :create, :update, :destroy] 
     end
   end
 end

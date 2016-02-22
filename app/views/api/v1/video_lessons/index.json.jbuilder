@@ -1,0 +1,1 @@
+json.array! @video_lessons, partial: 'api/v1/video_lessons/video_lesson', as: :video_lesson

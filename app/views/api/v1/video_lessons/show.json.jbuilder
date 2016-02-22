@@ -1,0 +1,1 @@
+json.partial! 'api/v1/video_lessons/video_lesson', video_lesson: @video_lesson
