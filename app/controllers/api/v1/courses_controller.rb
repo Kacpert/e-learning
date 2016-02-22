@@ -1,16 +1,23 @@
 class Api::V1::CoursesController < ApplicationController
   before_action :find_course, only: [:show, :update, :destroy]
   authorize_resource
+  skip_authorize_resource only: [:sorted]
   respond_to :json
 
   def show
   end
 
   def index
+    courses = Course.all
+    render json: courses, status: 200
+  end
+
+  def sorted
     @categories = []
     SortingCourse.all.each do |filter|
       @categories << { category_title: filter.name, courses: SortingCoursesService.new(filter, current_user).courses }
     end
+    render :sorted, status: 200
   end
 
   def create

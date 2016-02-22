@@ -76,6 +76,7 @@ Rails.application.routes.draw do
       resources :lessons, only: [:show, :index, :create, :update, :destroy]
       resources :quizzes, only: [:show, :index, :create, :update, :destroy]
         resources :groups
+      get 'courses/sorted' => 'courses/sorted'
       resources :courses, only: [:show, :index, :create, :update, :destroy] 
       resources :video_lessons, only: [:show, :index, :create, :update, :destroy] 
     end

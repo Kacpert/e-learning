@@ -8,11 +8,11 @@ RSpec.describe Api::V1::CoursesController, type: :controller do
 
 
 
-  describe 'GET #index' do
+  describe 'GET #sorted' do
       before :each do 
         create_list(:sorting_course, 2)
         create_list(:course, 5)
-        get :index, format: :json
+        get :sorted, format: :json
       end
         #should have values
       it { expect(response).to be_success }

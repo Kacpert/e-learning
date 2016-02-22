@@ -10,6 +10,7 @@ class Ability
         can :manage, :all
       when 'teacher'
         can :manage, Course
+        can :read, :all
       when 'normal'
         can :read, :all
     end
