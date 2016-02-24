@@ -18,3 +18,9 @@
 
 # Ignore system images etc.
 /public/system
+
+# Custom database.yml
+/config/database.yml
+
+# Custom RVM gemset
+/.ruby-gemset
