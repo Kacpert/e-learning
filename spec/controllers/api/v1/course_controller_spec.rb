@@ -31,7 +31,7 @@ RSpec.describe Api::V1::CoursesController, type: :controller do
       context 'valid data' do
         before :each do
           @attributes = attributes_for(:course)
-          section_attributes = { sections_attributes: { name: 'name', description: 'description' } }
+          section_attributes = { sections_attributes: [{ name: 'name', description: 'description' }] }
           post :create, @attributes.merge(section_attributes), format: :json  
         end
 
