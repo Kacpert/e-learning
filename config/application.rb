@@ -8,6 +8,9 @@ Bundler.require(*Rails.groups)
 
 module ELearning
   class Application < Rails::Application
+    
+    config.api_only = true
+
     # don't generate RSpec tests for views and helpers
       config.generators do |g|
         g.test_framework :rspec, fixture: true

@@ -13,9 +13,9 @@ class Api::V1::CoursesController < ApplicationController
   end
 
   def sorted
-    @categories = []
-    SortingCourse.all.each do |filter|
-      @categories << { category_title: filter.name, courses: SortingCoursesService.new(filter, current_user).courses }
+    #@category goes to view it is response
+    @categories = SortingCourse.all.map do |filter|
+      { category_title: filter.name, courses: SortingCoursesService.new(filter, current_user).courses }
     end
     render :sorted, status: 200
   end

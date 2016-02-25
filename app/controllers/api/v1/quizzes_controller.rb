@@ -1,6 +1,7 @@
 class Api::V1::QuizzesController < ApplicationController
-  before_action :find_quiz, only: [:show, :update, :destroy]
+  before_action :find_quiz, only: [:update, :destroy]
   def show
+   render json: {"id":3,"name":"Space term Quiz","description":"It is advanced quiz","image":{"small":"https://pbs.twimg.com/profile_images/593501983413112834/0ByVzPw6.jpg","medium":"https://pbs.twimg.com/profile_images/593501983413112834/0ByVzPw6.jpg"},"questions":[{"id":23,"question":"What mean 'Aphelion'","image":"url_to_image","type":"single_response","answer_time":0,"answers":[{"id":5,"text":" A unit for the measurement of wavelength. Equals one hundred millionth of a centimeter (0.003937 millionth of an inch)."},{"id":10,"text":"Pertaining to, or having the form of a ring."},{"id":8,"text":" That point in a solar orbit which is farthest from the Sun. "}]}]}, status: 200
   end
 
   def index

@@ -32,7 +32,7 @@ RSpec.describe Api::V1::CoursesController, type: :controller do
         before :each do
           @attributes = attributes_for(:course)
           section_attributes = { sections_attributes: { name: 'name', description: 'description' } }
-          post :create, @attributes, format: :json  
+          post :create, @attributes.merge(section_attributes), format: :json  
         end
 
         it { should respond_with 201 }
